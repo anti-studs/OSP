@@ -1,28 +1,19 @@
 import React, { Component, useState } from "react";
 import BookDisplay from "./BookDisplay.jsx";
-//import memorizer from "../library.js";
 
 function memoizer(func) {
   let cache = new Map();
 
   return async function (request) {
     console.log("Cache before functionality: ", cache);
-    // let start = performance.now()
-    //If not in cache, make fetch request 
+    //If not in cache, make fetch request to server and add to cache
     if (!cache.has(request)) {
       console.log('Fetching from server and adding to cache');
       let response = await func(request);
       cache.set(request, response);
     }
-    //Now already in cache so 
-    // booksData is returning an array of Promises not an actual array!
-    // Need to return array to display the books...
-    const booksData = await cache.get(request)
-    // let end = performance.now()
-    // setTime((end - start).toFixed(2));
-    // console.log("Duration: ", (end - start).toFixed(2), "ms");
-    console.log("Returning: ", booksData);
-    return booksData;
+    //Now return data from cache
+    return cache.get(request);
   };
 }
 
@@ -58,7 +49,7 @@ const App = (props) => {
 
   function displayBooks(data) {
     bookList = data.reduce((acc, elem, i) => {
-      acc.push(<BookDisplay data={elem} key={i} />);
+      acc.push(<BookDisplay data={elem} key={i}/>);
       return acc;
     }, []);
     setBooks(bookList)
@@ -71,10 +62,11 @@ const App = (props) => {
         <button type="button" onClick={getAllBooks}>Get All Books</button>
         <button type="button" onClick={async () => {
           let start = performance.now()
-          await test('/bookshelf')
+          const allBooks = await test('/bookshelf')
           let end = performance.now()
           setTime((end - start).toFixed(2));
           console.log("Duration: ", (end - start).toFixed(2), "ms");
+          displayBooks(allBooks);
         }}> Get All Books Test 2 </button>
       </div>
       <div className="booksContainer">{books}</div>
