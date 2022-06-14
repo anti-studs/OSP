@@ -1,3 +1,4 @@
+
 const { request, json } = require('express');
 const Book = require('../model/bookModel.js');
 const fetch = require('node-fetch');
@@ -6,7 +7,7 @@ const booksController = {};
 
 booksController.view = (req, res, next) => {
   Book.find({}, (err, entries) => {
-    console.log(entries)
+    //console.log(entries)
     // entries is an Array of all the entry objects
     res.locals.allEntries = entries;
     return next();
@@ -36,3 +37,4 @@ booksController.addFetchedBooks = (req, res, next) => {
 }
 
 module.exports = booksController;
+
