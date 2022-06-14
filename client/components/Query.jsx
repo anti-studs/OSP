@@ -1,12 +1,17 @@
-// import React from 'react';
-// import Loki from 'lokijs';
+import React from 'react';
+import Loki from 'lokijs';
 
-// export const db = new Loki('client-cache');;
-// export const requests = db.addCollection('requests');
+export const db = new Loki('client-cache', {
+  autoload: true,
+  autosave: true,
+  autosaveInterval: 4000
+});
 
-// const queryContext = React.createContext(requests);;
+export const requests = db.addCollection('requests');
 
-// export const QueryProvider = queryContext.Provider;
+const queryContext = React.createContext(requests);;
 
-// export default queryContext; 
+export const QueryProvider = queryContext.Provider;
+
+export default queryContext; 
 

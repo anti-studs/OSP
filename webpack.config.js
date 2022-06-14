@@ -3,6 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
+  resolve: {
+    fallback: {
+      "fs": false,
+    }
+  },
   entry: {
     index: './client/index.js'
   },

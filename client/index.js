@@ -1,6 +1,7 @@
 import React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
 import App from './components/App.jsx';
+import { QueryProvider } from './components/Query.jsx';
 
 // import { QueryProvider, requests } from './components/Query.jsx';
 
@@ -13,6 +14,8 @@ const root = ReactDOMClient.createRoot(container);
 
 // Initial render: Render an element to the root.
 root.render(
-    <App />
+    <QueryProvider>
+        <App />
+    </QueryProvider>
 );
 
