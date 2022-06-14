@@ -1,0 +1,43 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "proxy": "http://localhost:3000",
+  "main": "./client/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --open\" \"nodemon server/server.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
+    "axios": "^0.27.2",
+    "babel-loader": "^8.2.5",
+    "concurrently": "^7.2.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "express": "^4.18.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "lokijs": "^1.5.12",
+    "mongoose": "^6.3.4",
+    "node-fetch": "^2.6.7",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "request": "^2.88.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "url-loader": "^4.1.1"
+  }
+}
