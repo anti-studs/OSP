@@ -23,8 +23,8 @@ const App = (props) => {
 
   return (
     <main>
-      <div className="btnContainer">
-        {time && <p>{ `Fetched in ${time} ms`}</p>}
+      <div className="cacheContainer">
+        <p className="cacheDisplay">{time && <p>{ `Fetched in ${time} ms`}</p>}</p>
         <button type="button" onClick={getAllBooks}>
           Get All Books
         </button>

@@ -5,7 +5,7 @@ import { QueryProvider } from './components/Query.jsx';
 
 // import { QueryProvider, requests } from './components/Query.jsx';
 
-// import styles from './stylesheets/application.scss';
+import styles from './stylesheets/application.css';
 
 const container = document.getElementById('app');
 
