@@ -69,9 +69,9 @@ const App = (props) => {
       <div className="cacheContainer">
         {time && <p className="cacheDisplay">{`Fetched in ${time} ms`}</p>}
         <button type="button" onClick={getAllBooks}>Get All Books</button>
-        <button type="button" onClick={() => {
+        <button type="button" onClick={async () => {
           let start = performance.now()
-          test('/bookshelf')
+          await test('/bookshelf')
           let end = performance.now()
           setTime((end - start).toFixed(2));
           console.log("Duration: ", (end - start).toFixed(2), "ms");
