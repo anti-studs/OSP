@@ -1,17 +1,20 @@
 const express = require("express");
+const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const PORT = 3000;
+require('dotenv').config();
 
 // Database Connection
 mongoose.connect(
-    "mongodb+srv://twojay:PtTS83QW2JVJsB7j@cluster0.ueoejsn.mongodb.net/?retryWrites=true&w=majority",
+    'mongodb+srv://twojay:PtTS83QW2JVJsB7j@cluster0.ueoejsn.mongodb.net/?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true, dbName: "bookshelf" }
   )
 mongoose.connection.once("open", () => {
   console.log("Connected to Database");
 });
 
-const app = express();
+// Express App Requirements
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -19,19 +22,19 @@ app.use(cors());
 const booksRouter = require("./routes/booksRouter.js");
 app.use("/bookshelf", booksRouter);
 
+// Global Error Handler
 app.use((err, req, res, next) => {
-  let errorObj;
-  Object.assign(errorObj, {
-    log: "Express error handler caught unknown middleware error",
+  const defaultErr = {
+    log: 'Express Error Handler Caught Unknown Middleware Error',
     status: 400,
-    message: { err: "An error occurred" },
-  });
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
-  res.status(errorObj.status).send(errorObj.message.json());
+  return res.status(errorObj.status).json(errorObj.message);
 });
 
-const PORT = 3000;
-
+// Start Server
 app.listen(PORT, () => {
   console.log(`Listening on Port: ${PORT}`);
 });
