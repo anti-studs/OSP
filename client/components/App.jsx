@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import BookDisplay from "./BookDisplay.jsx";
-//import memorizer from "../library.js";
 
 class Node {
   constructor(key, val) {
@@ -163,7 +162,7 @@ const App = (props) => {
 
   function displayBooks(data) {
     bookList = data.reduce((acc, elem, i) => {
-      acc.push(<BookDisplay data={elem} key={i} />);
+      acc.push(<BookDisplay data={elem} key={i}/>);
       return acc;
     }, []);
     setBooks(bookList)
